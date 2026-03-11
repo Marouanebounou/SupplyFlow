@@ -1,16 +1,11 @@
 package com.example.SupplyFlow;
 
-import models.Produit;
+import com.example.SupplyFlow.models.Produit;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 
@@ -40,6 +35,18 @@ public class SupplyFlowController {
     public Produit getProduit(@PathVariable int id){
         Produit produit = db.get(id);
         if (produit == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        return produit;
+    }
+
+    @DeleteMapping("/product/delete/{id}")
+    public void delete(@PathVariable int id){
+        Produit produit = db.remove(id);
+        if (produit == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping("/product/create")
+    public Produit createProduit(Produit produit){
+        db.put(Integer.parseInt(UUID.randomUUID().toString()), produit);
         return produit;
     }
 
