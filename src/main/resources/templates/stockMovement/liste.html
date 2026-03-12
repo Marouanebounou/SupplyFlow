@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Historique des Mouvements - SupplyFlow</title>
+</head>
+<body>
+<h1>Historique des Mouvements de Stock</h1>
+
+<a th:href="@{/stockMovement/new}" style="display: inline-block; margin-bottom: 15px;">
+    + Enregistrer une entrée / sortie
+</a>
+
+<table border="1" cellpadding="10" cellspacing="0">
+    <thead>
+    <tr>
+        <th>Date et Heure</th>
+        <th>Produit</th>
+        <th>Type</th>
+        <th>Quantité</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="mouvement : ${mouvements}">
+        <td th:text="${#temporals.format(mouvement.date, 'dd-MM-yyyy HH:mm')}"></td>
+        <td th:text="${mouvement.produit.name}"></td>
+        <td th:text="${mouvement.type}"></td>
+        <td th:text="${mouvement.quantity}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<br/>
+<a th:href="@{/}">Retour au Tableau de Bord</a>
+</body>
+</html>

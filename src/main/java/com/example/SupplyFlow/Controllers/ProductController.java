@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/products")
+@RequestMapping("/produits")
 public class ProductController {
 
     private ProduitRepository produitRepository ;
@@ -34,7 +34,7 @@ public class ProductController {
         return "redirect:/produits";
     }
 
-    @GetMapping("/modifier/${id}")
+    @GetMapping("/update/{id}")
     public String afficherFormulaireModification(@PathVariable("id") int id , Model model){
         Produit produit = produitRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Id Produit invalide"));
         model.addAttribute("produit" , produit);
@@ -42,7 +42,7 @@ public class ProductController {
 
     }
 
-    @GetMapping("/delete/${id}")
+    @GetMapping("/delete/{id}")
     public String deleteProduit(@PathVariable("id") int id){
         produitRepository.deleteById(id);
         return "redirect:/produits";

@@ -1,10 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Gestion des Produits - SupplyFlow</title>
 </head>
 <body>
+<h1>Inventaire des Produits</h1>
 
+<a th:href="@{/produits/new}" style="display: inline-block; margin-bottom: 15px;">
+    + Ajouter un nouveau produit
+</a>
+
+<table border="1" cellpadding="10" cellspacing="0">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Catégorie</th>
+        <th>Prix</th>
+        <th>Quantité en Stock</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="produit : ${produits}">
+        <td th:text="${produit.id}"></td>
+        <td th:text="${produit.name}"></td>
+        <td th:text="${produit.category}"></td>
+        <td th:text="${produit.price} + ' MAD'"></td>
+        <td th:text="${produit.quantity}"></td>
+        <td>
+            <a th:href="@{/produits/update/{id}(id=${produit.id})}">Modifier</a> |
+            <a th:href="@{/produits/delete/{id}(id=${produit.id})}"
+               onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');">
+                Supprimer
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

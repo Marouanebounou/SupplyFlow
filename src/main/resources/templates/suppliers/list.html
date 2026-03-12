@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des fournisseurs - SupplyFlow</title>
+</head>
+<body>
+<h1>Inventaire des fournisseurs</h1>
+
+<a th:href="@{/suppliers/new}" style="display: inline-block; margin-bottom: 15px;">
+    + Ajouter un nouveau fournisseur
+</a>
+
+<table border="1" cellpadding="10" cellspacing="0">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>ville</th>
+        <th>téléphone</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="supplier : ${suppliers}">
+        <td th:text="${supplier.id}"></td>
+        <td th:text="${supplier.name}"></td>
+        <td th:text="${supplier.city}"></td>
+        <td th:text="${supplier.number}"></td>
+        <td>
+            <a th:href="@{/suppliers/update/{id}(id=${supplier.id})}">Modifier</a> |
+            <a th:href="@{/suppliers/delete/{id}(id=${supplier.id})}"
+               onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce fournisseur ?');">
+                Supprimer
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

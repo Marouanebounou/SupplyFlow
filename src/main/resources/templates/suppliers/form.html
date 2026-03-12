@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire fournisseur - SupplyFlow</title>
+</head>
+<body>
+<h1 th:text="${supplier.id == null ? 'Ajouter un fournisseur' : 'Modifier le fournisseur'}"></h1>
+
+<form th:action="@{/suppliers/save}" th:object="${supplier}" method="post">
+
+    <input type="hidden" th:field="*{id}" />
+
+    <div>
+        <label>Nom du fournisseur:</label><br/>
+        <input type="text" th:field="*{name}" required />
+    </div>
+    <br/>
+
+    <div>
+        <label>Ville:</label><br/>
+        <input type="text" th:field="*{city}" required />
+    </div>
+    <br/>
+
+    <div>
+        <label> téléphone téléphone</label><br/>
+        <input type="number" placeholder="06....." th:field="*{number}" required />
+    </div>
+    <br/>
+
+    <button type="submit" th:text="Enregistrer"></button>
+</form>
+
+<br/>
+<a th:href="@{/suppliers}">Annuler et retourner à la liste</a>
+
+</body>
+</html>

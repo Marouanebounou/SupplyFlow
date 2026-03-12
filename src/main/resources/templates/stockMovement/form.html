@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Enregistrer un Mouvement - SupplyFlow</title>
+</head>
+<body>
+<h1>Nouveau Mouvement de Stock</h1>
+
+<div th:if="${erreur}" th:text="${erreur}" style="color: red; font-weight: bold; margin-bottom: 15px;"></div>
+
+<form th:action="@{/stockMovement/save}" method="post">
+
+    <div>
+        <label>Produit :</label><br/>
+        <select name="produitId" required>
+            <option value="" disabled selected>-- Sélectionnez un produit --</option>
+            <option th:each="p : ${produits}" th:value="${p.id}" th:text="${p.name + ' (Stock: ' + p.quantity + ')'}"></option>
+        </select>
+    </div>
+    <br/>
+
+    <div>
+        <label>Type de Mouvement :</label><br/>
+        <select name="type" required>
+            <option value="ENTREE">Entrée (Réception)</option>
+            <option value="SORTIE">Sortie (Expédition)</option>
+        </select>
+    </div>
+    <br/>
+
+    <div>
+        <label>Quantité :</label><br/>
+        <input type="number" name="quantite" min="1" required />
+    </div>
+    <br/>
+
+    <button type="submit">Enregistrer</button>
+</form>
+
+<br/>
+<a th:href="@{/stockMovement}">Annuler et voir l'historique</a>
+</body>
+</html>
