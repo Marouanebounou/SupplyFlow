@@ -3,21 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <title>Gestion des fournisseurs - SupplyFlow</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        a.add-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            background: #4a90d9;
+            color: #fff;
+            padding: 9px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        a.add-btn:hover {
+            background: #357abd;
+        }
+
+        table {
+            width: 100%;
+            max-width: 800px;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        thead {
+            background: #4a90d9;
+            color: #fff;
+        }
+
+        thead th {
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 14px;
+            font-weight: normal;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #eee;
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: #f0f7ff;
+        }
+
+        tbody td {
+            padding: 11px 16px;
+            font-size: 14px;
+            color: #444;
+        }
+
+        a.edit {
+            color: #4a90d9;
+            text-decoration: none;
+        }
+
+        a.edit:hover {
+            text-decoration: underline;
+        }
+
+        a.delete {
+            color: #e05555;
+            text-decoration: none;
+        }
+
+        a.delete:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
+
 <h1>Inventaire des fournisseurs</h1>
 
-<a th:href="@{/suppliers/new}" style="display: inline-block; margin-bottom: 15px;">
-    + Ajouter un nouveau fournisseur
-</a>
+<a th:href="@{/suppliers/new}" class="add-btn">+ Ajouter un nouveau fournisseur</a>
 
-<table border="1" cellpadding="10" cellspacing="0">
+<table>
     <thead>
     <tr>
         <th>ID</th>
         <th>Nom</th>
-        <th>ville</th>
-        <th>téléphone</th>
+        <th>Ville</th>
+        <th>Téléphone</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -28,8 +112,8 @@
         <td th:text="${supplier.city}"></td>
         <td th:text="${supplier.number}"></td>
         <td>
-            <a th:href="@{/suppliers/update/{id}(id=${supplier.id})}">Modifier</a> |
-            <a th:href="@{/suppliers/delete/{id}(id=${supplier.id})}"
+            <a class="edit" th:href="@{/suppliers/update/{id}(id=${supplier.id})}">Modifier</a> |
+            <a class="delete" th:href="@{/suppliers/delete/{id}(id=${supplier.id})}"
                onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce fournisseur ?');">
                 Supprimer
             </a>
@@ -37,5 +121,6 @@
     </tr>
     </tbody>
 </table>
+<a th:href="@{/}" class="back">← Retour au Tableau de Bord</a>
 </body>
 </html>

@@ -3,8 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulaire fournisseur - SupplyFlow</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 24px;
+        }
+
+        form {
+            background: #fff;
+            padding: 24px;
+            border-radius: 8px;
+            max-width: 400px;
+            border: 1px solid #ddd;
+        }
+
+        label {
+            font-size: 14px;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px 10px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #4a90d9;
+        }
+
+        div {
+            margin-bottom: 16px;
+        }
+
+        button[type="submit"] {
+            background: #4a90d9;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 15px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button[type="submit"]:hover {
+            background: #357abd;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 16px;
+            color: #4a90d9;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
+
 <h1 th:text="${supplier.id == null ? 'Ajouter un fournisseur' : 'Modifier le fournisseur'}"></h1>
 
 <form th:action="@{/suppliers/save}" th:object="${supplier}" method="post">
@@ -12,28 +85,25 @@
     <input type="hidden" th:field="*{id}" />
 
     <div>
-        <label>Nom du fournisseur:</label><br/>
+        <label>Nom du fournisseur:</label>
         <input type="text" th:field="*{name}" required />
     </div>
-    <br/>
 
     <div>
-        <label>Ville:</label><br/>
+        <label>Ville:</label>
         <input type="text" th:field="*{city}" required />
     </div>
-    <br/>
 
     <div>
-        <label> téléphone téléphone</label><br/>
+        <label>Téléphone:</label>
         <input type="number" placeholder="06....." th:field="*{number}" required />
     </div>
-    <br/>
 
-    <button type="submit" th:text="Enregistrer"></button>
+    <button type="submit">Enregistrer</button>
+
 </form>
 
-<br/>
-<a th:href="@{/suppliers}">Annuler et retourner à la liste</a>
+<a th:href="@{/suppliers}">← Annuler et retourner à la liste</a>
 
 </body>
 </html>

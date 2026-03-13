@@ -2,12 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>SuplyFlow</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 24px;
+        }
+
+        nav {
+            display: flex;
+            gap: 16px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            background: #4a90d9;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            background: #357abd;
+        }
+    </style>
 </head>
 <body>
-    <h1>SuplyFlow</h1>
+<h1>SuplyFlow</h1>
+<nav>
     <a th:href="@{/produits}">Produits</a>
     <a th:href="@{/suppliers}">Fournisseurs</a>
     <a th:href="@{/stockMovement}">Mouvements de stock</a>
+</nav>
 </body>
 </html>
